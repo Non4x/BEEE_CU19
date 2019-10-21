@@ -1,0 +1,29 @@
+int lightSensor = A0;
+int tempSensor = A1;
+
+
+void setup() //Runs once at the start
+{
+  pinMode(tempSensor, INPUT);
+  pinMode(lightSensor, INPUT);
+  Serial.begin(9600);
+  
+}
+
+void loop() //Runs in a constant loop
+{
+  
+  
+  int lightReading = analogRead(lightSensor);
+  Serial.print("Light reading: ");
+  Serial.println(lightReading);
+  int tempReading = analogRead(tempSensor);
+  float voltage = tempReading * 5.0; 
+  voltage /= 1024.0;
+  float tempC = (voltage - 0.5) * 100; 
+  
+  Serial.print(tempC);
+  Serial.println(" degrees C"); //Print as degrees
+  
+  
+  delay(1000); 
